@@ -6,7 +6,10 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class TeamControllerTest extends WebTestCase
 {
-    public function testTeams()
+    /**
+     * @test
+     */
+    public function teams()
     {
         $client = static::createClient();
 
