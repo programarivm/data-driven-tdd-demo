@@ -1,5 +1,5 @@
 {
-    [
+    "data": [
         {
             "name": "Arsenal",
             "location": "Holloway, London",
@@ -24,6 +24,6 @@
             "name": "Chelsea",
             "location": "Fulham, London",
             "stadium": "Stamford Bridge"
-        },
+        }
     ]
 }
