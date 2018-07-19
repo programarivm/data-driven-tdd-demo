@@ -1,0 +1,29 @@
+{
+    [
+        {
+            "name": "Arsenal",
+            "location": "Holloway, London",
+            "stadium": "Emirates Stadium"
+        },
+        {
+            "name": "Bournemouth",
+            "location": "Boscombe, Bournemouth",
+            "stadium": "Vitality Stadium"
+        },
+        {
+            "name": "Brighton and Hove Albion",
+            "location": "Falmer, Brighton and Hove",
+            "stadium": "Amex Stadium"
+        },
+        {
+            "name": "Burnley",
+            "location": "Burnley",
+            "stadium": "Turf Moor"
+        },
+        {
+            "name": "Chelsea",
+            "location": "Fulham, London",
+            "stadium": "Stamford Bridge"
+        },
+    ]
+}
