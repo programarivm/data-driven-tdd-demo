@@ -1,19 +1,19 @@
 <?php
 
-namespace App\Tests\Controller;
+namespace App\Tests\Team;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class TeamControllerTest extends WebTestCase
+class ReadTest extends WebTestCase
 {
     /**
      * @test
      */
-    public function teams()
+    public function season_2017_18_200()
     {
         $client = static::createClient();
 
-        $client->request('GET', '/teams');
+        $client->request('GET', '/team/2017-18');
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
     }

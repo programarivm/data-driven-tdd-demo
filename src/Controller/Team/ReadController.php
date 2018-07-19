@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Team;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
-class TeamController
+class ReadController
 {
-    public function index(Request $request)
+    public function season(Request $request)
     {
         return new Response('Hi world!');
     }
