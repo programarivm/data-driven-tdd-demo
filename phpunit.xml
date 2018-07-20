@@ -12,6 +12,7 @@
             <file>team/create/HttpStatus200Test.php</file>
             <file>team/{season}/HttpStatus200Test.php</file>
             <file>team/delete/{id}/HttpStatus200Test.php</file>
+            <file>team/delete/{id}/HttpStatus404Test.php</file>
         </testsuite>
     </testsuites>
 </phpunit>

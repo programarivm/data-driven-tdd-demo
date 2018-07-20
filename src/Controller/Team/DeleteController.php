@@ -14,6 +14,16 @@ class DeleteController extends AbstractController
         $em = $this->getDoctrine()->getManager();
         $team = $em->getRepository(Team::class)->find($request->get('id'));
 
+        if (!$team) {
+            return new Response(
+                json_encode([
+                    'message' => 'Team not found.'
+                ]),
+                Response::HTTP_NOT_FOUND,
+                ['content-type' => 'application/json']
+            );
+        }
+
         $em->remove($team);
         $em->flush();
 
