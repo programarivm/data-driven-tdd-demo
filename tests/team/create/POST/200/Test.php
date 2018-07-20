@@ -25,8 +25,14 @@ class Test extends WebTestCase
      * @dataProvider data
      * @test
      */
-    public function create_POST_200($team)
+    public function create_POST_200($name, $location, $stadium)
     {
+        $team = [
+            'name' => $name,
+            'location' => $location,
+            'stadium' => $stadium
+        ];
+
         $this->client->request(
             'POST',
             '/' . self::SLUG_ENTITY . '/' . self::SLUG_ACTION,
@@ -41,6 +47,16 @@ class Test extends WebTestCase
 
     public function data()
     {
-        return json_decode(file_get_contents(__DIR__ . '/data.json'), true);
+        $data = [];
+        $teams = json_decode(file_get_contents(__DIR__ . '/data.json'))->data;
+        foreach ($teams as $team) {
+            $data[] = [
+                $team->name,
+                $team->location,
+                $team->stadium
+            ];
+        }
+
+        return $data;
     }
 }

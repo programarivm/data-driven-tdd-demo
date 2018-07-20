@@ -13,6 +13,8 @@ class CreateController extends AbstractController
     {
         $data = json_decode($request->getContent());
 
+        // print_r($data); exit;
+
         $team = new Team;
         $team->setName($data->name);
         $team->setLocation($data->location);
@@ -23,6 +25,12 @@ class CreateController extends AbstractController
         $em->persist($team);
         $em->flush();
 
-        $this->assertTrue(false); // TODO
+        return new Response(
+            json_encode([
+                'message' => 'Team successfully created.'
+            ]),
+            Response::HTTP_OK,
+            ['content-type' => 'application/json']
+        );
     }
 }
