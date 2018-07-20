@@ -34,6 +34,35 @@ TODO
 
 TODO
 
+## How Tos
+
+### Database Setup
+
+Make sure your `.env` contains the following variables:
+
+    DB_DRIVER=pdo_mysql
+    DB_CONNECTION=mysql
+    DB_HOST=mysql
+    DB_PORT=3306
+    DB_DATABASE=ddtd_demo
+    DB_USERNAME=root
+    DB_PASSWORD=password
+
+### Create the Database Schema
+
+SSH the PHP container:
+
+    sudo docker exec -it <container name> /bin/bash
+    cd /data-driven-test-development-demo/
+
+Create the database schema:
+
+    php vendor/bin/doctrine orm:schema-tool:create
+
+### Run the Tests:
+
+    php bin/phpunit
+
 ## Contributions
 
 Contributions are welcome.

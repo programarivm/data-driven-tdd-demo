@@ -1,12 +1,17 @@
 nginx:
-    build: .
+    image: nginx:latest
     ports:
         - "8000:80"
+    volumes:
+        - ./:/data-driven-test-development-demo
+        - ./docker/nginx/conf.d:/etc/nginx/conf.d/
     links:
         - fpm
-        - mysql
+
 fpm:
-    image: php:7.2-fpm
+    build: .
+    links:
+        - mysql
     volumes:
         - ./:/data-driven-test-development-demo
 
@@ -15,4 +20,4 @@ mysql:
     environment:
         - DB_HOST=mysql
         - MYSQL_ROOT_PASSWORD=password
-        - MYSQL_DATABASE=data_driven_test_development_demo
+        - MYSQL_DATABASE=ddtd_demo

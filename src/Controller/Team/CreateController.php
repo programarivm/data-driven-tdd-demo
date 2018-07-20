@@ -2,10 +2,12 @@
 
 namespace App\Controller\Team;
 
+use App\Entity\Team;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
-class CreateController
+class CreateController extends AbstractController
 {
     public function index(Request $request)
     {
@@ -16,7 +18,9 @@ class CreateController
         $team->setLocation($data->location);
         $team->setStadium($data->stadium);
 
-        $em->persist($user);
+        $em = $this->getDoctrine()->getManager();
+
+        $em->persist($team);
         $em->flush();
 
         // ...
