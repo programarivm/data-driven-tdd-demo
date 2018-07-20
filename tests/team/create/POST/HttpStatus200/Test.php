@@ -6,9 +6,9 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class Test extends WebTestCase
 {
-    const SLUG_ENTITY = 'team';
+    private $object = 'team';
 
-    const SLUG_ACTION = 'create';
+    private $action = 'create';
 
     private $client;
 
@@ -36,7 +36,7 @@ class Test extends WebTestCase
 
         $this->client->request(
             'POST',
-            '/' . self::SLUG_ENTITY . '/' . self::SLUG_ACTION,
+            "/{$this->object}/{$this->action}",
             [],
             [],
             ['CONTENT_TYPE' => 'application/json'],

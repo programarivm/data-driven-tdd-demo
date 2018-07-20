@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class Test extends WebTestCase
 {
-    const SLUG_ENTITY = 'team';
+    private $object = 'team';
 
     private $client;
 
@@ -28,7 +28,7 @@ class Test extends WebTestCase
     {
         $this->client->request(
             'GET',
-            '/' . self::SLUG_ENTITY . '/' . $season
+            "/{$this->object}/$season"
         );
 
         $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
