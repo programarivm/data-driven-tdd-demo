@@ -25,12 +25,13 @@ class Test extends WebTestCase
      * @dataProvider data
      * @test
      */
-    public function create_POST_200($name, $location, $stadium)
+    public function create_POST_200($name, $location, $stadium, $season)
     {
         $team = [
             'name' => $name,
             'location' => $location,
-            'stadium' => $stadium
+            'stadium' => $stadium,
+            'season' => $season,
         ];
 
         $this->client->request(
@@ -53,7 +54,8 @@ class Test extends WebTestCase
             $data[] = [
                 $team->name,
                 $team->location,
-                $team->stadium
+                $team->stadium,
+                $team->season
             ];
         }
 

@@ -40,6 +40,13 @@ class Team
      */
     private $stadium;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(type="string")
+     */
+    private $season;
+
     public function getId(): int
     {
         return $this->id;
@@ -73,5 +80,15 @@ class Team
     public function getStadium(): string
     {
         return $this->stadium;
+    }
+
+    public function setSeason(string $season): void
+    {
+        $this->season = $season;
+    }
+
+    public function getSeason(): string
+    {
+        return $this->season;
     }
 }

@@ -13,12 +13,11 @@ class CreateController extends AbstractController
     {
         $data = json_decode($request->getContent());
 
-        // print_r($data); exit;
-
         $team = new Team;
         $team->setName($data->name);
         $team->setLocation($data->location);
         $team->setStadium($data->stadium);
+        $team->setSeason($data->season);
 
         $em = $this->getDoctrine()->getManager();
 

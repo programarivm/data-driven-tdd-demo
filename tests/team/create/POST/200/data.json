@@ -3,27 +3,32 @@
         {
             "name": "Arsenal",
             "location": "Holloway, London",
-            "stadium": "Emirates Stadium"
+            "stadium": "Emirates Stadium",
+            "season": "2017-18"
         },
         {
             "name": "Bournemouth",
             "location": "Boscombe, Bournemouth",
-            "stadium": "Vitality Stadium"
+            "stadium": "Vitality Stadium",
+            "season": "2017-18"
         },
         {
             "name": "Brighton and Hove Albion",
             "location": "Falmer, Brighton and Hove",
-            "stadium": "Amex Stadium"
+            "stadium": "Amex Stadium",
+            "season": "2017-18"
         },
         {
             "name": "Burnley",
             "location": "Burnley",
-            "stadium": "Turf Moor"
+            "stadium": "Turf Moor",
+            "season": "2017-18"
         },
         {
             "name": "Chelsea",
             "location": "Fulham, London",
-            "stadium": "Stamford Bridge"
+            "stadium": "Stamford Bridge",
+            "season": "2017-18"
         }
     ]
 }
