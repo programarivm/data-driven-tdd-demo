@@ -6,15 +6,44 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class ReadTest extends WebTestCase
 {
+    const SLUG_ENTITY = 'team';
+
+    private $client;
+
+    public function setUp()
+    {
+        $this->client = static::createClient();
+    }
+
+    public function tearDown()
+    {
+        $this->client = null;
+    }
+
     /**
+     * @dataProvider data
      * @test
      */
-    public function season_2017_18_200()
+    public function GET_200($season)
     {
-        $client = static::createClient();
+        $this->client->request(
+            'GET',
+            '/' . self::SLUG_ENTITY . '/' . $season
+        );
 
-        $client->request('GET', '/team/2017-18');
+        $this->assertEquals(200, $this->client->getResponse()->getStatusCode());
+    }
 
-        $this->assertEquals(200, $client->getResponse()->getStatusCode());
+    public function data()
+    {
+        $data = [];
+        $urls = json_decode(file_get_contents(__DIR__ . '/data.json'))->url;
+        foreach ($urls as $url) {
+            $data[] = [
+                $url->season
+            ];
+        }
+
+        return $data;
     }
 }
