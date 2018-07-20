@@ -1,8 +1,6 @@
 ## Data Driven Test Development Demo
 
-This is a simple demo that shows how to build a JWT-authenticated REST API from scratch by following a data-driven test development methodology.
-
-Let's run a few CRUD operations on the UK Premier League!
+This is a simple demo that shows how to build a JWT-authenticated REST API from scratch by following a data-driven test development methodology. Let's run a few CRUD operations on the UK Premier League.
 
 #### /team/create
 

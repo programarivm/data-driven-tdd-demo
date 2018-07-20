@@ -37,7 +37,7 @@ class ReadTest extends WebTestCase
     public function data()
     {
         $data = [];
-        $urls = json_decode(file_get_contents(__DIR__ . '/data.json'))->url;
+        $urls = json_decode(file_get_contents(__DIR__ . '/data.json'))->queryString;
         foreach ($urls as $url) {
             $data[] = [
                 $url->season

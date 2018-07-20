@@ -49,7 +49,7 @@ class Test extends WebTestCase
     public function data()
     {
         $data = [];
-        $teams = json_decode(file_get_contents(__DIR__ . '/data.json'))->data;
+        $teams = json_decode(file_get_contents(__DIR__ . '/data.json'))->httpBody;
         foreach ($teams as $team) {
             $data[] = [
                 $team->name,
