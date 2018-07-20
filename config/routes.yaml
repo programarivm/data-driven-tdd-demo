@@ -7,3 +7,8 @@ team_read_season:
     path: /team/{season}
     controller: App\Controller\Team\ReadController::season
     methods: [GET]
+
+team_delete_id:
+    path: /team/delete/{id}
+    controller: App\Controller\Team\DeleteController::index
+    methods: [DELETE]

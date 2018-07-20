@@ -11,6 +11,7 @@
             <directory>tests</directory>
             <file>team/create/POST/200/Test.php</file>
             <file>team/{season}/GET/200/Test.php</file>
+            <file>team/delete/{id}/DELETE/200/Test.php</file>
         </testsuite>
     </testsuites>
 </phpunit>
