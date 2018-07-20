@@ -39,10 +39,10 @@ class Test extends WebTestCase
     public function data()
     {
         $data = [];
-        $urls = json_decode(file_get_contents(__DIR__ . '/data.json'))->queryString;
-        foreach ($urls as $url) {
+        $queryStrings = json_decode(file_get_contents(__DIR__ . '/data.json'))->queryString;
+        foreach ($queryStrings as $queryString) {
             $data[] = [
-                $url->id
+                $queryString->id
             ];
         }
 
