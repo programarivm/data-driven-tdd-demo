@@ -1,10 +1,10 @@
 <?php
 
-namespace App\Tests\Team;
+namespace App\Tests\Team\Season\GET\HttpStatus200;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class ReadTest extends WebTestCase
+class Test extends WebTestCase
 {
     const SLUG_ENTITY = 'team';
 

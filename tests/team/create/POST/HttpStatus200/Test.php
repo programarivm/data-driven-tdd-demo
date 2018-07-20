@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\Team;
+namespace App\Tests\Team\Create\POST\HttpStatus200;
 
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
