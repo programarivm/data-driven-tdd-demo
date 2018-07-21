@@ -4,9 +4,7 @@ This is a simple demo that shows how to build a JWT-authenticated REST API from 
 
 Let's run a few CRUD operations on the UK Premier League.
 
-### Examples
-
-#### /team/create
+### `/team/create`
 
 | Method       | Description                                |
 |--------------|--------------------------------------------|
@@ -26,7 +24,7 @@ Example:
       "message": "Team successfully created"
     }
 
-#### /team/{season}
+### `/team/{season}`
 
 | Method       | Description                                |
 |--------------|--------------------------------------------|
@@ -161,7 +159,7 @@ Example:
         }]
     }
 
-#### /team/update/{id}
+### `/team/update/{id}`
 
 | Method       | Description                                |
 |--------------|--------------------------------------------|
@@ -200,7 +198,7 @@ Example:
       "message": "Not Found"
     }
 
-#### /team/delete/{id}
+### `/team/delete/{id}`
 
 | Method       | Description                                |
 |--------------|--------------------------------------------|
