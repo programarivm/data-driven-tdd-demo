@@ -8,6 +8,11 @@ team_read_season:
     controller: App\Controller\Team\ReadController::season
     methods: [GET]
 
+team_update_id:
+    path: /team/update/{id}
+    controller: App\Controller\Team\UpdateController::index
+    methods: [PUT]
+
 team_delete_id:
     path: /team/delete/{id}
     controller: App\Controller\Team\DeleteController::index

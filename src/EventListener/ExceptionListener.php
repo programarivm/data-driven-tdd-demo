@@ -36,7 +36,7 @@ class ExceptionListener
         }
 
         $response->setContent($content);
-        
+
         $event->setResponse($response);
     }
 }

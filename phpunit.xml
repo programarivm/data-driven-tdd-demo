@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<phpunit bootstrap="vendor/autoload.php">
+<phpunit
+    backupGlobals="false"
+    colors="true"
+    bootstrap="vendor/autoload.php"
+>
     <php>
         <env name="KERNEL_CLASS" value="App\Kernel" />
         <env name="APP_ENV" value="test"/>
@@ -7,10 +11,20 @@
         <env name="DATABASE_URL" value="mysql://root:password@mysql:3306/ddtd_demo"/>
     </php>
     <testsuites>
-        <testsuite name="REST API Test Suite">
+        <testsuite name="team/create">
             <directory>tests</directory>
             <file>team/create/HttpStatus200Test.php</file>
+        </testsuite>
+        <testsuite name="team/update/{id}">
+            <directory>tests</directory>
+            <file>team/update/{id}/HttpStatus200Test.php</file>
+        </testsuite>
+        <testsuite name="team/{season}">
+            <directory>tests</directory>
             <file>team/{season}/HttpStatus200Test.php</file>
+        </testsuite>
+        <testsuite name="team/delete/{id}">
+            <directory>tests</directory>
             <file>team/delete/{id}/HttpStatus200Test.php</file>
             <file>team/delete/{id}/HttpStatus400Test.php</file>
             <file>team/delete/{id}/HttpStatus404Test.php</file>
