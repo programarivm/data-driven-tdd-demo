@@ -12,22 +12,16 @@
     </php>
     <testsuites>
         <testsuite name="team/create">
-            <directory>tests</directory>
-            <file>team/create/HttpStatus200Test.php</file>
+            <directory>tests/team/create</directory>
         </testsuite>
         <testsuite name="team/update/{id}">
-            <directory>tests</directory>
-            <file>team/update/{id}/HttpStatus200Test.php</file>
+            <directory>tests/team/update/{id}</directory>
         </testsuite>
         <testsuite name="team/{season}">
-            <directory>tests</directory>
-            <file>team/{season}/HttpStatus200Test.php</file>
+            <directory>tests/team/{season}</directory>
         </testsuite>
         <testsuite name="team/delete/{id}">
-            <directory>tests</directory>
-            <file>team/delete/{id}/HttpStatus200Test.php</file>
-            <file>team/delete/{id}/HttpStatus400Test.php</file>
-            <file>team/delete/{id}/HttpStatus404Test.php</file>
+            <directory>tests/team/delete/{id}</directory>
         </testsuite>
     </testsuites>
 </phpunit>
