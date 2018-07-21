@@ -17,7 +17,10 @@ class ReadController extends AbstractController
                ->findBySeason($request->get('season'));
 
         return new Response(
-            $serializer->serialize($teams, 'json'),
+            $serializer->serialize([
+                'status' => Response::HTTP_OK,
+                'result' => $teams
+            ], 'json'),
             Response::HTTP_OK,
             ['content-type' => 'application/json']
         );

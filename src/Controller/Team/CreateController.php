@@ -26,7 +26,8 @@ class CreateController extends AbstractController
 
         return new Response(
             json_encode([
-                'message' => 'Team successfully created.'
+                'status' => Response::HTTP_OK,
+                'message' => 'Team successfully created'
             ]),
             Response::HTTP_OK,
             ['content-type' => 'application/json']

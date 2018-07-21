@@ -28,7 +28,10 @@ class DeleteController extends AbstractController
         $em->flush();
 
         return new Response(
-            json_encode(['message' => 'Team successfully deleted']),
+            json_encode([
+                'status' => Response::HTTP_OK,
+                'message' => 'Team successfully deleted'
+            ]),
             Response::HTTP_OK,
             ['content-type' => 'application/json']
         );

@@ -44,7 +44,8 @@ class UpdateController extends AbstractController
 
         return new Response(
             json_encode([
-            'message' => 'Team successfully updated.'
+                'status' => Response::HTTP_OK,
+                'message' => 'Team successfully updated'
             ]),
             Response::HTTP_OK,
             ['content-type' => 'application/json']
