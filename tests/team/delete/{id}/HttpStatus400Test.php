@@ -10,7 +10,7 @@ class HttpStatus400Test extends WebTestCase
      * @dataProvider data
      * @test
      */
-    public function http_status_404($id)
+    public function http_status_400($id)
     {
         $client = static::createClient();
 
