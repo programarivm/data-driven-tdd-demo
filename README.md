@@ -33,6 +33,24 @@ Run the tests:
 
     php bin/phpunit
 
+### `/auth`
+
+| Method       | Description                                |
+|--------------|--------------------------------------------|
+| `PUT`        | Gets a new access token                    |
+
+Example:
+
+    curl -X POST -i http://localhost:8000/auth --data '{
+        "username": "bob",
+        "password": "password"
+    }'
+
+    {
+        "status": 200,
+        "access_token": "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNTMyMjg2NTIzfQ.Kz1WPilwEqbWevpGGDbVv3smAuzjhsjXtL7lbG4aQXk"
+    }
+
 ### `/team/create`
 
 | Method       | Description                                |
@@ -49,8 +67,22 @@ Example:
     }'
 
     {
-      "status": 200,
-      "message": "Team successfully created"
+      "status": 401,
+      "message": "Unauthorized"
+    }
+
+Example:
+
+    curl -X POST -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNTMyMjg2NTIzfQ.Kz1WPilwEqbWevpGGDbVv3smAuzjhsjXtL7lbG4aQXk' -i http://localhost:8000/team/create --data '{
+        "name": "Arsenal",
+        "location": "Holloway, London",
+        "stadium": "Emirates Stadium",
+        "season": "2017-18"
+    }'
+
+    {
+        "status": 200,
+        "message": "Team successfully created"
     }
 
 ### `/team/{season}`
@@ -62,6 +94,15 @@ Example:
 Example:
 
     curl -X GET -i http://localhost:8000/team/2017-18
+
+    {
+        "status": 401,
+        "message": "Unauthorized"
+    }
+
+Example:
+
+    curl -X GET -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNTMyMjg2NTIzfQ.Kz1WPilwEqbWevpGGDbVv3smAuzjhsjXtL7lbG4aQXk' -i http://localhost:8000/team/2017-18
 
     {
         "status": 200,
@@ -196,7 +237,7 @@ Example:
 
 Example:
 
-    curl -X PUT -i http://localhost:8000/team/update/12 --data '{
+    curl -X PUT -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNTMyMjkzMDQxfQ.qqocS5aazMf8ebXigjmA0JKhEnlrJs4idGE-8MZjMUU' -i http://localhost:8000/team/update/12 --data '{
         "location": "Manchester"
     }'
 
@@ -207,7 +248,7 @@ Example:
 
 Example:
 
-    curl -X PUT -i http://localhost:8000/team/update/foo --data '{
+    curl -X PUT -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNTMyMjkzMDQxfQ.qqocS5aazMf8ebXigjmA0JKhEnlrJs4idGE-8MZjMUU' -i http://localhost:8000/team/update/foo --data '{
         "location": "Manchester"
     }'
 
@@ -218,7 +259,7 @@ Example:
 
 Example:
 
-    curl -X PUT -i http://localhost:8000/team/update/7848765 --data '{
+    curl -X PUT -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNTMyMjkzMDQxfQ.qqocS5aazMf8ebXigjmA0JKhEnlrJs4idGE-8MZjMUU' -i http://localhost:8000/team/update/7848765 --data '{
         "location": "Manchester"
     }'
 
@@ -235,7 +276,7 @@ Example:
 
 Example:
 
-    curl -X DELETE -i http://localhost:8000/team/delete/1
+    curl -X DELETE -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNTMyMjkzMDQxfQ.qqocS5aazMf8ebXigjmA0JKhEnlrJs4idGE-8MZjMUU' -i http://localhost:8000/team/delete/1
 
     {
       "status": 200,
@@ -244,7 +285,7 @@ Example:
 
 Example:
 
-    curl -X DELETE -i http://localhost:8000/team/delete/foo
+    curl -X DELETE -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNTMyMjkzMDQxfQ.qqocS5aazMf8ebXigjmA0JKhEnlrJs4idGE-8MZjMUU' -i http://localhost:8000/team/delete/foo
 
     {
       "status": 400,
@@ -253,7 +294,7 @@ Example:
 
 Example:
 
-    curl -X DELETE -i http://localhost:8000/team/delete/7848765
+    curl -X DELETE -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNTMyMjkzMDQxfQ.qqocS5aazMf8ebXigjmA0JKhEnlrJs4idGE-8MZjMUU' -i http://localhost:8000/team/delete/7848765
 
     {
       "status": 404,
