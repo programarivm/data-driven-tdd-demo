@@ -1,3 +1,8 @@
+auth:
+    path: /auth
+    controller: App\Controller\AuthController::index
+    methods: [POST]
+
 team_create:
     path: /team/create
     controller: App\Controller\Team\CreateController::index

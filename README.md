@@ -1,8 +1,37 @@
 ## Data Driven Test Development Demo
 
-This is a simple demo that shows how to build a JWT-authenticated REST API from scratch by following a data-driven test development methodology.
+This is a simple demo that shows how to build a JWT-authenticated REST API from scratch by following a data-driven test development methodology. Let's run a few CRUD operations on the UK Premier League.
 
-Let's run a few CRUD operations on the UK Premier League.
+### Database Setup
+
+Make sure your `.env` file contains the following variables:
+
+    DB_DRIVER=pdo_mysql
+    DB_CONNECTION=mysql
+    DB_HOST=mysql
+    DB_PORT=3306
+    DB_DATABASE=ddtd_demo
+    DB_USERNAME=root
+    DB_PASSWORD=password
+
+### Start the Docker Services
+
+    docker-compose up --build
+
+### Run the Tests:
+
+SSH the PHP container:
+
+    sudo docker exec -it <container name> /bin/bash
+    cd /data-driven-test-development-demo/
+
+Bootstrap the testing database:
+
+    php bin/console database:bootstrap
+
+Run the tests:
+
+    php bin/phpunit
 
 ### `/team/create`
 
@@ -230,41 +259,6 @@ Example:
       "status": 404,
       "message": "Not Found"
     }
-
-### Database Setup
-
-Make sure your `.env` file contains the following variables:
-
-    DB_DRIVER=pdo_mysql
-    DB_CONNECTION=mysql
-    DB_HOST=mysql
-    DB_PORT=3306
-    DB_DATABASE=ddtd_demo
-    DB_USERNAME=root
-    DB_PASSWORD=password
-
-### Start the Docker Services
-
-    docker-compose up --build
-
-### Run the Tests:
-
-SSH the PHP container:
-
-    sudo docker exec -it <container name> /bin/bash
-    cd /data-driven-test-development-demo/
-
-Remove the previous database schema (if any):
-
-    php vendor/bin/doctrine orm:schema-tool:drop --force
-
-Create the database schema:
-
-    php vendor/bin/doctrine orm:schema-tool:create
-
-Run the tests:
-
-    php bin/phpunit
 
 ## Contributions
 

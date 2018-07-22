@@ -11,6 +11,9 @@
         <env name="DATABASE_URL" value="mysql://root:password@mysql:3306/ddtd_demo"/>
     </php>
     <testsuites>
+        <testsuite name="auth">
+            <directory>tests/auth</directory>
+        </testsuite>
         <testsuite name="team/create">
             <directory>tests/team/create</directory>
         </testsuite>
