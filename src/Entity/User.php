@@ -33,6 +33,11 @@ class User
      */
     private $password;
 
+    public function getId(): int
+    {
+        return $this->id;
+    }
+
     public function getUsername(): string
     {
         return $this->username;

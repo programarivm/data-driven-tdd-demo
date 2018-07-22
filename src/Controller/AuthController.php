@@ -26,18 +26,15 @@ class AuthController extends AbstractController
             throw new NotFoundHttpException;
         }
 
-        $key = "example_key";
         $token = [
-            "iss" => "http://example.org",
-            "aud" => "http://example.com",
-            "iat" => 1356999524,
-            "nbf" => 1357000000
+            "id" => $user->getId(),
+            "exp" => time() + (60 * 60)
         ];
 
         return new Response(
             json_encode([
                 'status' => Response::HTTP_OK,
-                'token' => JWT::encode($token, $key)
+                'access_token' => JWT::encode($token, getenv('JWT_SECRET'))
             ]),
             Response::HTTP_OK,
             ['content-type' => 'application/json']

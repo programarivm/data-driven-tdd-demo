@@ -6,6 +6,7 @@ use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
 class ExceptionListener
 {
@@ -26,6 +27,11 @@ class ExceptionListener
             $content = json_encode([
                 'status' => $exception->getStatusCode(),
                 'message' => 'Not Found'
+            ]);
+        } elseif ($exception instanceof UnauthorizedHttpException) {
+            $content = json_encode([
+                'status' => $exception->getStatusCode(),
+                'message' => 'Unauthorized'
             ]);
         } else {
             $content = json_encode([
