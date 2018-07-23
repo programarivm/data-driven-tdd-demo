@@ -2,9 +2,9 @@
 
 namespace App\Tests\Team\Update\Id;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use App\Tests\TokenAuthenticatedWebTestCase;
 
-class HttpStatus200Test extends WebTestCase
+class HttpStatus200Test extends TokenAuthenticatedWebTestCase
 {
     /**
      * @dataProvider data
@@ -32,7 +32,10 @@ class HttpStatus200Test extends WebTestCase
             "team/update/$id",
             [],
             [],
-            ['CONTENT_TYPE' => 'application/json'],
+            [
+                'HTTP_AUTHORIZATION' => 'Bearer '.self::$jwt,
+                'CONTENT_TYPE' => 'application/json',
+            ],
             json_encode($team)
         );
 

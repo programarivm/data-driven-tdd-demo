@@ -2,9 +2,9 @@
 
 namespace App\Tests\Team\Delete\Id;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use App\Tests\TokenAuthenticatedWebTestCase;
 
-class HttpStatus400Test extends WebTestCase
+class HttpStatus400Test extends TokenAuthenticatedWebTestCase
 {
     /**
      * @dataProvider data
@@ -16,7 +16,13 @@ class HttpStatus400Test extends WebTestCase
 
         $client->request(
             'DELETE',
-            "/team/delete/$id"
+            "/team/delete/$id",
+            [],
+            [],
+            [
+                'HTTP_AUTHORIZATION' => 'Bearer '.self::$jwt,
+                'CONTENT_TYPE' => 'application/json',
+            ]
         );
 
         $this->assertEquals(400, $client->getResponse()->getStatusCode());

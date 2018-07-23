@@ -2,9 +2,9 @@
 
 namespace App\Tests\Team\Create;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use App\Tests\TokenAuthenticatedWebTestCase;
 
-class HttpStatus200Test extends WebTestCase
+class HttpStatus200Test extends TokenAuthenticatedWebTestCase
 {
     /**
      * @dataProvider data
@@ -26,7 +26,10 @@ class HttpStatus200Test extends WebTestCase
             'team/create',
             [],
             [],
-            ['CONTENT_TYPE' => 'application/json'],
+            [
+                'HTTP_AUTHORIZATION' => 'Bearer '.self::$jwt,
+                'CONTENT_TYPE' => 'application/json',
+            ],
             json_encode($team)
         );
 
@@ -36,13 +39,13 @@ class HttpStatus200Test extends WebTestCase
     public function data()
     {
         $data = [];
-        $teams = json_decode(file_get_contents(__DIR__ . '/data/http_status_200.json'))->httpBody;
+        $teams = json_decode(file_get_contents(__DIR__.'/data/http_status_200.json'))->httpBody;
         foreach ($teams as $team) {
             $data[] = [
                 $team->name,
                 $team->location,
                 $team->stadium,
-                $team->season
+                $team->season,
             ];
         }
 

@@ -2,9 +2,9 @@
 
 namespace App\Tests\Team\Season;
 
-use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use App\Tests\TokenAuthenticatedWebTestCase;
 
-class HttpStatus200Test extends WebTestCase
+class HttpStatus200Test extends TokenAuthenticatedWebTestCase
 {
     /**
      * @dataProvider data
@@ -16,7 +16,13 @@ class HttpStatus200Test extends WebTestCase
 
         $client->request(
             'GET',
-            "/team/$season"
+            "/team/$season",
+            [],
+            [],
+            [
+                'HTTP_AUTHORIZATION' => 'Bearer '.self::$jwt,
+                'CONTENT_TYPE' => 'application/json',
+            ]
         );
 
         $this->assertEquals(200, $client->getResponse()->getStatusCode());
