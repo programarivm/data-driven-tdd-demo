@@ -20,7 +20,7 @@ class HttpStatus404Test extends TokenAuthenticatedWebTestCase
             [],
             [],
             [
-                'HTTP_AUTHORIZATION' => 'Bearer '.self::$jwt,
+                'HTTP_AUTHORIZATION' => 'Bearer '.self::$accessToken,
                 'CONTENT_TYPE' => 'application/json',
             ]
         );

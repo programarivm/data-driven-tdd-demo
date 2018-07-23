@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 abstract class TokenAuthenticatedWebTestCase extends WebTestCase
 {
-    protected static $jwt;
+    protected static $accessToken;
 
     public static function setUpBeforeClass()
     {
@@ -28,6 +28,6 @@ abstract class TokenAuthenticatedWebTestCase extends WebTestCase
 
         $content = json_decode($client->getResponse()->getContent());
 
-        self::$jwt = $content->access_token;
+        self::$accessToken = $content->access_token;
     }
 }
