@@ -2,6 +2,8 @@
 
 This is a simple demo that shows how to build a JWT-authenticated REST API from scratch by following a data-driven test development methodology. Let's run a few CRUD operations on the UK Premier League.
 
+For further information please visit this post: [A Data-Driven Test Development (DDTD) Approach with PHPUnit](https://programarivm.com/data-driven-test-development-demo-ddtd-approach-with-phpunit/).
+
 ### Database Setup
 
 Make sure your `.env` file contains the following variables:
