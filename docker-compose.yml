@@ -1,23 +1,36 @@
-nginx:
-    image: nginx:latest
-    ports:
-        - "8000:80"
-    volumes:
-        - ./:/data-driven-test-development-demo
-        - ./docker/nginx/conf.d:/etc/nginx/conf.d/
-    links:
-        - fpm
+version: "3.5"
 
-fpm:
-    build: .
-    links:
-        - mysql
-    volumes:
-        - ./:/data-driven-test-development-demo
+services:
+  php_fpm:
+      build: .
+      container_name: ddtd_demo_php_fpm
+      working_dir: /usr/share/nginx/ddtd-demo
+      networks:
+        - ddtd_demo
+      volumes:
+          - ./:/usr/share/nginx/ddtd-demo
 
-mysql:
-    image: mysql:5.7
-    environment:
-        - DB_HOST=mysql
-        - MYSQL_ROOT_PASSWORD=password
-        - MYSQL_DATABASE=ddtd_demo
+  nginx:
+      image: nginx:1.15
+      container_name: ddtd_demo_nginx
+      working_dir: /usr/share/nginx/ddtd-demo
+      networks:
+        - ddtd_demo
+      ports:
+          - "8080:80"
+      volumes:
+          - ./:/usr/share/nginx/ddtd-demo
+          - ./docker/nginx/conf.d/default.conf:/etc/nginx/conf.d/default.conf
+
+  mysql:
+      image: mysql:5.7
+      container_name: ddtd_demo_mysql
+      networks:
+        - ddtd_demo
+      environment:
+          - MYSQL_ROOT_PASSWORD=password
+          - MYSQL_DATABASE=ddtd_demo
+
+networks:
+  ddtd_demo:
+    driver: bridge

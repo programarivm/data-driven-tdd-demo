@@ -6,7 +6,7 @@ For further information please visit this post: [A Data-Driven Test Development 
 
 ### Database Setup
 
-Make sure your `.env` file contains the following variables:
+Make sure your `.env` file contains the following:
 
     DB_DRIVER=pdo_mysql
     DB_CONNECTION=mysql
@@ -15,25 +15,26 @@ Make sure your `.env` file contains the following variables:
     DB_DATABASE=ddtd_demo
     DB_USERNAME=root
     DB_PASSWORD=password
+    DATABASE_URL=mysql://root:password@mysql:3306/ddtd_demo
+
 
 ### Start the Docker Services
 
     docker-compose up --build
 
-### Run the Tests:
+### Install the Dependencies
 
-SSH the PHP container:
+    docker exec -it ddtd_demo_php_fpm composer install
 
-    sudo docker exec -it <container name> /bin/bash
-    cd /data-driven-test-development-demo/
+### Bootstrap the Testing Database
 
-Bootstrap the testing database:
+    docker exec -it ddtd_demo_php_fpm php bin/console database:bootstrap
 
-    php bin/console database:bootstrap
+### Run the Tests
 
-Run the tests:
+    docker exec -it ddtd_demo_php_fpm php bin/phpunit
 
-    php bin/phpunit
+## API Endpoints
 
 ### `/auth`
 
@@ -43,7 +44,7 @@ Run the tests:
 
 Example:
 
-    curl -X POST -i http://localhost:8000/auth --data '{
+    curl -X POST -i http://localhost:8080/auth --data '{
         "username": "bob",
         "password": "password"
     }'
@@ -61,7 +62,7 @@ Example:
 
 Example:
 
-    curl -X POST -i http://localhost:8000/team/create --data '{
+    curl -X POST -i http://localhost:8080/team/create --data '{
         "name": "Arsenal",
         "location": "Holloway, London",
         "stadium": "Emirates Stadium",
@@ -75,7 +76,7 @@ Example:
 
 Example:
 
-    curl -X POST -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNTMyMjg2NTIzfQ.Kz1WPilwEqbWevpGGDbVv3smAuzjhsjXtL7lbG4aQXk' -i http://localhost:8000/team/create --data '{
+    curl -X POST -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNTMyMjg2NTIzfQ.Kz1WPilwEqbWevpGGDbVv3smAuzjhsjXtL7lbG4aQXk' -i http://localhost:8080/team/create --data '{
         "name": "Arsenal",
         "location": "Holloway, London",
         "stadium": "Emirates Stadium",
@@ -95,7 +96,7 @@ Example:
 
 Example:
 
-    curl -X GET -i http://localhost:8000/team/2017-18
+    curl -X GET -i http://localhost:8080/team/2017-18
 
     {
         "status": 401,
@@ -104,7 +105,7 @@ Example:
 
 Example:
 
-    curl -X GET -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNTMyMjg2NTIzfQ.Kz1WPilwEqbWevpGGDbVv3smAuzjhsjXtL7lbG4aQXk' -i http://localhost:8000/team/2017-18
+    curl -X GET -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNTMyMjg2NTIzfQ.Kz1WPilwEqbWevpGGDbVv3smAuzjhsjXtL7lbG4aQXk' -i http://localhost:8080/team/2017-18
 
     {
         "status": 200,
@@ -239,7 +240,7 @@ Example:
 
 Example:
 
-    curl -X PUT -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNTMyMjkzMDQxfQ.qqocS5aazMf8ebXigjmA0JKhEnlrJs4idGE-8MZjMUU' -i http://localhost:8000/team/update/12 --data '{
+    curl -X PUT -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNTMyMjkzMDQxfQ.qqocS5aazMf8ebXigjmA0JKhEnlrJs4idGE-8MZjMUU' -i http://localhost:8080/team/update/12 --data '{
         "location": "Manchester"
     }'
 
@@ -250,7 +251,7 @@ Example:
 
 Example:
 
-    curl -X PUT -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNTMyMjkzMDQxfQ.qqocS5aazMf8ebXigjmA0JKhEnlrJs4idGE-8MZjMUU' -i http://localhost:8000/team/update/foo --data '{
+    curl -X PUT -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNTMyMjkzMDQxfQ.qqocS5aazMf8ebXigjmA0JKhEnlrJs4idGE-8MZjMUU' -i http://localhost:8080/team/update/foo --data '{
         "location": "Manchester"
     }'
 
@@ -261,7 +262,7 @@ Example:
 
 Example:
 
-    curl -X PUT -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNTMyMjkzMDQxfQ.qqocS5aazMf8ebXigjmA0JKhEnlrJs4idGE-8MZjMUU' -i http://localhost:8000/team/update/7848765 --data '{
+    curl -X PUT -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNTMyMjkzMDQxfQ.qqocS5aazMf8ebXigjmA0JKhEnlrJs4idGE-8MZjMUU' -i http://localhost:8080/team/update/7848765 --data '{
         "location": "Manchester"
     }'
 
@@ -278,7 +279,7 @@ Example:
 
 Example:
 
-    curl -X DELETE -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNTMyMjkzMDQxfQ.qqocS5aazMf8ebXigjmA0JKhEnlrJs4idGE-8MZjMUU' -i http://localhost:8000/team/delete/1
+    curl -X DELETE -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNTMyMjkzMDQxfQ.qqocS5aazMf8ebXigjmA0JKhEnlrJs4idGE-8MZjMUU' -i http://localhost:8080/team/delete/1
 
     {
       "status": 200,
@@ -287,7 +288,7 @@ Example:
 
 Example:
 
-    curl -X DELETE -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNTMyMjkzMDQxfQ.qqocS5aazMf8ebXigjmA0JKhEnlrJs4idGE-8MZjMUU' -i http://localhost:8000/team/delete/foo
+    curl -X DELETE -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNTMyMjkzMDQxfQ.qqocS5aazMf8ebXigjmA0JKhEnlrJs4idGE-8MZjMUU' -i http://localhost:8080/team/delete/foo
 
     {
       "status": 400,
@@ -296,7 +297,7 @@ Example:
 
 Example:
 
-    curl -X DELETE -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNTMyMjkzMDQxfQ.qqocS5aazMf8ebXigjmA0JKhEnlrJs4idGE-8MZjMUU' -i http://localhost:8000/team/delete/7848765
+    curl -X DELETE -H 'Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpZCI6MiwiZXhwIjoxNTMyMjkzMDQxfQ.qqocS5aazMf8ebXigjmA0JKhEnlrJs4idGE-8MZjMUU' -i http://localhost:8080/team/delete/7848765
 
     {
       "status": 404,
