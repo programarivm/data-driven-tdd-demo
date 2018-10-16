@@ -1,5 +1,9 @@
 ## Data Driven Test Development Demo
 
+<p align="center">
+	<img src="https://github.com/programarivm/data-driven-test-development-demo/blob/master/resources/premier-league-logo.png" />
+</p>
+
 This is a simple demo that shows how to build a JWT-authenticated REST API from scratch by following a data-driven test development methodology. Let's run a few CRUD operations on the UK Premier League.
 
 For further information please visit this post: [A Data-Driven Test Development (DDTD) Approach with PHPUnit](https://programarivm.com/data-driven-test-development-demo-ddtd-approach-with-phpunit/).
