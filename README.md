@@ -4,9 +4,17 @@ This is a simple demo that shows how to build a JWT-authenticated REST API from 
 
 For further information please visit this post: [A Data-Driven Test Development (DDTD) Approach with PHPUnit](https://programarivm.com/data-driven-test-development-demo-ddtd-approach-with-phpunit/).
 
-### Database Setup
+### Start the Docker Services
 
-Make sure your `.env` file contains the following:
+    docker-compose up --build
+
+### Install the Dependencies
+
+    docker exec -it --user 1000:1000 ddtd_demo_php_fpm composer install
+
+### Bootstrap the Testing Database
+
+Copy and paste the following into your `.env` file:
 
     DB_DRIVER=pdo_mysql
     DB_CONNECTION=mysql
@@ -17,22 +25,51 @@ Make sure your `.env` file contains the following:
     DB_PASSWORD=password
     DATABASE_URL=mysql://root:password@mysql:3306/ddtd_demo
 
+Then run:
 
-### Start the Docker Services
-
-    docker-compose up --build
-
-### Install the Dependencies
-
-    docker exec -it ddtd_demo_php_fpm composer install
-
-### Bootstrap the Testing Database
-
-    docker exec -it ddtd_demo_php_fpm php bin/console database:bootstrap
+    docker exec -it --user 1000:1000 ddtd_demo_php_fpm php bin/console database:bootstrap
 
 ### Run the Tests
 
-    docker exec -it ddtd_demo_php_fpm php bin/phpunit
+Copy and paste the following code into your `phpunit.xml.dist` file:
+
+```
+<?xml version="1.0" encoding="UTF-8"?>
+<phpunit
+    backupGlobals="false"
+    colors="true"
+    bootstrap="vendor/autoload.php"
+>
+    <php>
+        <env name="KERNEL_CLASS" value="App\Kernel" />
+        <env name="APP_ENV" value="test"/>
+        <env name="APP_SECRET" value="b4cc043df931ac7a8ceed60fdef591d1"/>
+        <env name="DATABASE_URL" value="mysql://root:password@mysql:3306/ddtd_demo"/>
+        <env name="JWT_SECRET" value="example_secret_for_testing_only"/>
+    </php>
+    <testsuites>
+        <testsuite name="auth">
+            <directory>tests/auth</directory>
+        </testsuite>
+        <testsuite name="team/create">
+            <directory>tests/team/create</directory>
+        </testsuite>
+        <testsuite name="team/update/{id}">
+            <directory>tests/team/update/{id}</directory>
+        </testsuite>
+        <testsuite name="team/{season}">
+            <directory>tests/team/{season}</directory>
+        </testsuite>
+        <testsuite name="team/delete/{id}">
+            <directory>tests/team/delete/{id}</directory>
+        </testsuite>
+    </testsuites>
+</phpunit>
+```
+
+Then run:
+
+    docker exec -it --user 1000:1000 ddtd_demo_php_fpm php bin/phpunit
 
 ## API Endpoints
 
