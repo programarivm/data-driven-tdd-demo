@@ -8,6 +8,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * Class CreateController.
+ */
 class CreateController extends Controller implements TokenAuthenticatedController
 {
     public function index(Request $request)

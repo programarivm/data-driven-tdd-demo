@@ -9,6 +9,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
+/**
+ * Class AuthController.
+ */
 class AuthController extends AbstractController
 {
     public function index(Request $request)
@@ -17,6 +20,7 @@ class AuthController extends AbstractController
 
         $em = $this->getDoctrine()->getManager();
 
+        /** @var User|null $user */
         $user = $em->getRepository(User::class)->findOneBy([
             'username' => $data->username,
             'password' => $data->password
