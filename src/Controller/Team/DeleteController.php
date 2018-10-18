@@ -10,6 +10,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
+/**
+ * Class DeleteController.
+ */
 class DeleteController extends Controller implements TokenAuthenticatedController
 {
     public function index(Request $request)

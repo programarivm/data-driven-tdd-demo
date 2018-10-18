@@ -9,8 +9,17 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Serializer\SerializerInterface;
 
+/**
+ * Class ReadController.
+ */
 class ReadController extends Controller implements TokenAuthenticatedController
 {
+    /**
+     * @param Request $request
+     * @param SerializerInterface $serializer
+     *
+     * @return Response
+     */
     public function season(Request $request, SerializerInterface $serializer)
     {
         $teams = $this->getDoctrine()

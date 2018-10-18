@@ -10,6 +10,9 @@ use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\HttpKernel\KernelEvents;
 use Symfony\Component\HttpKernel\Exception\UnauthorizedHttpException;
 
+/**
+ * Class TokenSubscriber.
+ */
 class TokenSubscriber implements EventSubscriberInterface
 {
     public function onKernelController(FilterControllerEvent $event)

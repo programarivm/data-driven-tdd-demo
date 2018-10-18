@@ -9,6 +9,9 @@ use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Process\Process;
 use Symfony\Component\Process\Exception\ProcessFailedException;
 
+/**
+ * Class DatabaseBootstrapCommand.
+ */
 class DatabaseBootstrapCommand extends ContainerAwareCommand
 {
     protected function configure()

@@ -10,6 +10,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
+/**
+ * Class UpdateController.
+ */
 class UpdateController extends Controller implements TokenAuthenticatedController
 {
     public function index(Request $request)
@@ -19,6 +22,7 @@ class UpdateController extends Controller implements TokenAuthenticatedControlle
         }
 
         $em = $this->getDoctrine()->getManager();
+        /** @var Team|null $team */
         $team = $em->getRepository(Team::class)->find($request->get('id'));
 
         if (!$team) {
