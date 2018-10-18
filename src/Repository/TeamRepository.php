@@ -8,10 +8,14 @@ class TeamRepository extends EntityRepository
 {
     public function findBySeason($season)
     {
-        return $this->getEntityManager()
-            ->createQuery(
-                "SELECT t FROM App:Team t ORDER BY t.name ASC WHERE t.season=$season"
-            )
-            ->getResult();
+        $qb = $this->createQueryBuilder('t');
+
+        return $qb
+            ->where('t.season = :season')
+            ->orderBy('t.name', 'ASC')
+            ->setParameter('season', $season)
+            ->getQuery()
+            ->getResult()
+        ;
     }
 }
