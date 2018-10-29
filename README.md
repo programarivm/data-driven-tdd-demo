@@ -47,7 +47,6 @@ Copy and paste the following code into your `phpunit.xml.dist` file:
     <php>
         <env name="KERNEL_CLASS" value="App\Kernel" />
         <env name="APP_ENV" value="test"/>
-        <env name="APP_SECRET" value="b4cc043df931ac7a8ceed60fdef591d1"/>
         <env name="DATABASE_URL" value="mysql://root:password@mysql:3306/ddtd_demo"/>
         <env name="JWT_SECRET" value="example_secret_for_testing_only"/>
     </php>
