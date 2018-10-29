@@ -31,29 +31,6 @@ class ExceptionListener
             $message = 'Internal Server Error';
         }
 
-        /*if ($exception instanceof BadRequestHttpException) {
-            $content = json_encode([
-                'status' => $exception->getStatusCode(),
-                'message' => 'Bad Request'
-            ]);
-        } elseif ($exception instanceof NotFoundHttpException) {
-            $content = json_encode([
-                'status' => $exception->getStatusCode(),
-                'message' => 'Not Found'
-            ]);
-        } elseif ($exception instanceof UnauthorizedHttpException) {
-            $content = json_encode([
-                'status' => $exception->getStatusCode(),
-                'message' => 'Unauthorized'
-            ]);
-        } else {
-            $content = json_encode([
-                'status' => $exception->getStatusCode(),
-                'message' => 'Internal Server Error'
-            ]);
-            $response->setStatusCode(Response::HTTP_INTERNAL_SERVER_ERROR);
-        }*/
-
         $response->setContent(
             json_encode([
                 'status' => $exception->getStatusCode(),
